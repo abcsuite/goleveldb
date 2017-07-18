@@ -12,11 +12,11 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
-	"github.com/syndtr/goleveldb/leveldb/iterator"
-	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/syndtr/goleveldb/leveldb/storage"
-	"github.com/syndtr/goleveldb/leveldb/testutil"
-	"github.com/syndtr/goleveldb/leveldb/util"
+	"github.com/abcsuite/goleveldb/leveldb/iterator"
+	"github.com/abcsuite/goleveldb/leveldb/opt"
+	"github.com/abcsuite/goleveldb/leveldb/storage"
+	"github.com/abcsuite/goleveldb/leveldb/testutil"
+	"github.com/abcsuite/goleveldb/leveldb/util"
 )
 
 type tableWrapper struct {
@@ -111,7 +111,7 @@ var _ = testutil.Defer(func() {
 			}
 
 			testutil.AllKeyValueTesting(nil, Build, nil, nil)
-			Describe("with one key per block", Test(testutil.KeyValue_Generate(nil, 9, 1, 1, 10, 512, 512), func(r *Reader) {
+			Describe("with one key per block", Test(testutil.KeyValue_Generate(nil, 9, 1, 10, 512, 512), func(r *Reader) {
 				It("should have correct blocks number", func() {
 					indexBlock, err := r.readBlock(r.indexBH, true)
 					Expect(err).To(BeNil())

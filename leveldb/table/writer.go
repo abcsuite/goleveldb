@@ -12,12 +12,11 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/golang/snappy"
-
-	"github.com/syndtr/goleveldb/leveldb/comparer"
-	"github.com/syndtr/goleveldb/leveldb/filter"
-	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/syndtr/goleveldb/leveldb/util"
+	"github.com/abcsuite/goleveldb/leveldb/comparer"
+	"github.com/abcsuite/goleveldb/leveldb/filter"
+	"github.com/abcsuite/goleveldb/leveldb/opt"
+	"github.com/abcsuite/goleveldb/leveldb/util"
+	"github.com/btcsuite/snappy-go"
 )
 
 func sharedPrefixLen(a, b []byte) int {
@@ -349,7 +348,7 @@ func (w *Writer) Close() error {
 
 // NewWriter creates a new initialized table writer for the file.
 //
-// Table writer is not safe for concurrent use.
+// Table writer is not goroutine-safe.
 func NewWriter(f io.Writer, o *opt.Options) *Writer {
 	w := &Writer{
 		writer:          f,

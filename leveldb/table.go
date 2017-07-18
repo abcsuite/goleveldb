@@ -11,12 +11,12 @@ import (
 	"sort"
 	"sync/atomic"
 
-	"github.com/syndtr/goleveldb/leveldb/cache"
-	"github.com/syndtr/goleveldb/leveldb/iterator"
-	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/syndtr/goleveldb/leveldb/storage"
-	"github.com/syndtr/goleveldb/leveldb/table"
-	"github.com/syndtr/goleveldb/leveldb/util"
+	"github.com/abcsuite/goleveldb/leveldb/cache"
+	"github.com/abcsuite/goleveldb/leveldb/iterator"
+	"github.com/abcsuite/goleveldb/leveldb/opt"
+	"github.com/abcsuite/goleveldb/leveldb/storage"
+	"github.com/abcsuite/goleveldb/leveldb/table"
+	"github.com/abcsuite/goleveldb/leveldb/util"
 )
 
 // tFile holds basic information about a table.
@@ -434,7 +434,7 @@ func (t *tOps) close() {
 	t.bpool.Close()
 	t.cache.Close()
 	if t.bcache != nil {
-		t.bcache.CloseWeak()
+		t.bcache.Close()
 	}
 }
 

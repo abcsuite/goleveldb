@@ -7,11 +7,11 @@
 package leveldb
 
 import (
-	"github.com/syndtr/goleveldb/leveldb/errors"
-	"github.com/syndtr/goleveldb/leveldb/iterator"
-	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/syndtr/goleveldb/leveldb/storage"
-	"github.com/syndtr/goleveldb/leveldb/util"
+	"github.com/abcsuite/goleveldb/leveldb/errors"
+	"github.com/abcsuite/goleveldb/leveldb/iterator"
+	"github.com/abcsuite/goleveldb/leveldb/opt"
+	"github.com/abcsuite/goleveldb/leveldb/storage"
+	"github.com/abcsuite/goleveldb/leveldb/util"
 )
 
 // Reader is the interface that wraps basic Get and NewIterator methods.
@@ -62,7 +62,7 @@ func (db *DB) checkAndCleanFiles() error {
 		case storage.TypeManifest:
 			keep = fd.Num >= db.s.manifestFd.Num
 		case storage.TypeJournal:
-			if !db.frozenJournalFd.Zero() {
+			if !db.frozenJournalFd.Nil() {
 				keep = fd.Num >= db.frozenJournalFd.Num
 			} else {
 				keep = fd.Num >= db.journalFd.Num
